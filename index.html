@@ -1,0 +1,748 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMI Franchise Onboarding Dashboard</title>
+<style>
+  :root{--plum:#362642;--pink:#F24476;--lav:#EDE7F0;--ink:#2B2230;--mute:#8A7F92;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:#FAF8FB}
+  .wrap{max-width:1140px;margin:0 auto;padding:32px 24px 64px}
+  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;border-bottom:3px solid var(--plum);padding-bottom:18px}
+  h1{margin:0;font-size:26px;color:var(--plum);letter-spacing:-.4px}
+  .sub{color:var(--mute);font-size:13px;margin-top:4px}
+  .brand{font-weight:700;color:var(--pink)}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:26px 0}
+  .card{background:#fff;border:1px solid #ECE4F0;border-radius:14px;padding:18px 18px 16px;box-shadow:0 1px 3px rgba(54,38,66,.05)}
+  .card .n{font-size:34px;font-weight:750;line-height:1;color:var(--plum)}
+  .card .l{font-size:12.5px;color:var(--mute);margin-top:8px;text-transform:uppercase;letter-spacing:.5px}
+  .card.pink .n{color:var(--pink)}
+  .card .sub2{font-size:12px;color:var(--mute);margin-top:6px}
+  .panel{background:#fff;border:1px solid #ECE4F0;border-radius:14px;padding:22px 24px;margin-bottom:26px;box-shadow:0 1px 3px rgba(54,38,66,.05)}
+  .panel h2{margin:0 0 16px;font-size:15px;color:var(--plum);text-transform:uppercase;letter-spacing:.6px}
+  .frow{display:flex;align-items:center;gap:14px;margin:10px 0}
+  .flab{width:190px;font-size:13.5px;font-weight:600;text-align:right;color:var(--ink)}
+  .ftrack{flex:1;background:var(--lav);border-radius:8px;overflow:hidden}
+  .fbar{color:#fff;font-weight:700;font-size:13px;padding:9px 12px;border-radius:8px;text-align:right;min-width:34px;transition:width .4s}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .fbtn{border:1px solid #DcccE4;background:#fff;color:var(--plum);border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+  .fbtn.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+  input#q{margin-left:auto;border:1px solid #DcccE4;border-radius:999px;padding:7px 14px;font-size:13px;min-width:200px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;color:var(--mute);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;padding:8px 10px;border-bottom:2px solid #Eee}
+  td{padding:10px;border-bottom:1px solid #F1ECF4;vertical-align:middle}
+  td.co{font-weight:600;color:var(--plum)}
+  td.num,td.days{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr:hover td{background:#FBF7FD}
+  .pill{color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .src{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;margin-right:4px;background:#Eee;color:#777}
+  .s-sheet{background:#E7F0FB;color:#2D6FB8} .s-hs{background:#FCE6EF;color:#C32B66}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#CFC6D6;margin-right:6px}
+  .dot.live{background:#2EA86B} .dot.act{background:var(--pink)} .dot.setup{background:var(--plum)}
+  footer{color:var(--mute);font-size:12px;text-align:center;margin-top:20px}
+</style></head><body><div class="wrap">
+  <header>
+    <div>
+      <h1>PMI Franchise Onboarding</h1>
+      <div class="sub"><span class="brand">Blanket</span> &times; PMI partnership &middot; pipeline &rarr; onboarding &rarr; activation</div>
+    </div>
+    <div class="sub">Updated June 22, 2026</div>
+  </header>
+
+  <div class="cards">
+    <div class="card"><div class="n">32</div><div class="l">In Pipeline</div><div class="sub2">open sales deals</div></div>
+    <div class="card pink"><div class="n">26</div><div class="l">Started Onboarding</div><div class="sub2">in setup, not yet live</div></div>
+    <div class="card"><div class="n">11</div><div class="l">Signed Up &amp; Activated</div><div class="sub2">account activated / live</div></div>
+    <div class="card"><div class="n">69</div><div class="l">Total Engaged Offices</div><div class="sub2">3 churned / lost</div></div>
+  </div>
+
+  <div class="panel"><h2>Onboarding Funnel</h2><div class="frow">
+          <div class="flab">In Pipeline</div>
+          <div class="ftrack"><div class="fbar" style="width:100%;background:#B9A7C7">32</div></div>
+        </div><div class="frow">
+          <div class="flab">Started Onboarding</div>
+          <div class="ftrack"><div class="fbar" style="width:81%;background:#F24476">26</div></div>
+        </div><div class="frow">
+          <div class="flab">Signed Up & Activated</div>
+          <div class="ftrack"><div class="fbar" style="width:34%;background:#362642">11</div></div>
+        </div></div>
+
+  <div class="panel">
+    <h2>Office Detail</h2>
+    <div class="toolbar">
+      <button class="fbtn on" data-f="all">All</button>
+      <button class="fbtn" data-f="pipeline">Pipeline</button>
+      <button class="fbtn" data-f="onboarding">Onboarding</button>
+      <button class="fbtn" data-f="activated">Activated</button>
+      <button class="fbtn" data-f="churned">Churned</button>
+      <input id="q" placeholder="Search office…">
+    </div>
+    <table id="tbl"><thead><tr>
+      <th>Office</th><th>Status</th><th>Funnel Phase</th><th>Platform</th>
+      <th>HubSpot Stage</th><th>Days</th><th>Source</th>
+    </tr></thead><tbody><tr data-bucket="activated">
+          <td class="co">PMI Home Team</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Platform setup complete</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">8d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI Georgia</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">253d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI Sunny OC</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">105d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI North Texas</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">328d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI MassBay</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Platform setup complete</td>
+          <td><span class="dot setup"></span>Setup complete</td>
+          <td>Closed Won</td>
+          
+          <td class="days">0d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI River City</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Platform setup complete</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">14d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI Central Oregon</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Platform setup complete</td>
+          <td><span class="dot setup"></span>Setup complete</td>
+          <td>Closed Won</td>
+          
+          <td class="days">22d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI Motor City</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Platform setup complete</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">15d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI Jordan Valley</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td>Platform setup complete</td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">24d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI South Tampa</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td></td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="activated">
+          <td class="co">PMI South Jersey</td>
+          <td><span class="pill" style="background:#362642">Activated</span></td>
+          <td></td>
+          <td><span class="dot live"></span>Live</td>
+          <td>Closed Won</td>
+          
+          <td class="days">188d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Realty Solutions</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Products selected</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>Opportunity</td>
+          
+          <td class="days">7d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Diamond Bar</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>Opportunity</td>
+          
+          <td class="days">26d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI JCM Realty</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Signed – onboarding pending</td>
+          <td><span class="dot"></span>—</td>
+          <td>Closed Won</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Angel City</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Form submitted</td>
+          <td><span class="dot"></span>—</td>
+          <td>Negotiations Started</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Angel Oak</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Form submitted</td>
+          <td><span class="dot"></span>—</td>
+          <td>Negotiations Started</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Keystone Tulsa</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>Negotiations Started</td>
+          
+          <td class="days">26d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">Key PA Property Management</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">20d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI 4U</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Adams Properties</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Office selected</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">24d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Advisory Group</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Office selected</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Air Capital</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Office selected</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Alameda</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Office selected</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Alliance</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Office selected</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI American River</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Office selected</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Angel City</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Form submitted</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Angel Oak</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Form submitted</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI ATX Properties</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Bay State</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Products selected</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">15d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI C-Shell</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td></td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">271d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Elite</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Products selected</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">20d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Inspired</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot"></span>—</td>
+          <td>—</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Sage Rose</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Onboarding started</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">14d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Sunshine State</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Products selected</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">18d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Terminus</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Products selected</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">21d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">PMI Two Rivers</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Products selected</td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">20d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr><tr data-bucket="onboarding">
+          <td class="co">portico</td>
+          <td><span class="pill" style="background:#F24476">Onboarding</span></td>
+          <td>Signed – onboarding pending</td>
+          <td><span class="dot"></span>—</td>
+          <td>Closed Won</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Midwest</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Aspire</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Indianapolis</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Richmond</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Fox Valley</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Imagine NEA</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Greater Dickson</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI North Alabama</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Arrico Realty Lakeland</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Elevation</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Greater Philadelphia</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Landstar</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Demo Completed</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI San Francisco</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Upstate SC</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Demo Completed</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI BeltLine</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Bmore Metro</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Demo Completed</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Central Florida</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Gulf Horizons</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Navigate</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Orlando Parks</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Lighthouse</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Demo Completed</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Eagles</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Property Management All Bay</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Bridgerview</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Agreement Sent</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Broadway Management</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Negotiations Started</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Pearl Path</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Negotiations Started</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Best Assets</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Prime Home</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Properties (NY)</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Smart Choice</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Opportunity</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Profit Realty</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>On Hold</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="pipeline">
+          <td class="co">PMI Wilmington</td>
+          <td><span class="pill" style="background:#9B89AB">Pipeline</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>On Hold</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="churned">
+          <td class="co">PMI Perimeter</td>
+          <td><span class="pill" style="background:#C0392B">Churned</span></td>
+          <td></td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>Churned</td>
+          
+          <td class="days">496d</td>
+          <td><span class="src s-sheet">Funnel</span><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="churned">
+          <td class="co">PMI East Lyme</td>
+          <td><span class="pill" style="background:#C0392B">Churned</span></td>
+          <td>—</td>
+          <td><span class="dot"></span>—</td>
+          <td>Churned</td>
+          
+          <td class="days">—</td>
+          <td><span class="src s-hs">HubSpot</span></td>
+        </tr><tr data-bucket="churned">
+          <td class="co">PMI Southeast CT</td>
+          <td><span class="pill" style="background:#C0392B">Churned</span></td>
+          <td></td>
+          <td><span class="dot act"></span>Activated</td>
+          <td>—</td>
+          
+          <td class="days">438d</td>
+          <td><span class="src s-sheet">Funnel</span></td>
+        </tr></tbody></table>
+  </div>
+
+  <footer>Sources: PMI Onboarding Funnel (sheet export (full master CSV)) + HubSpot PMI Sales Pipeline. Generated by Blanket GTM.</footer>
+</div>
+<script>
+  const btns=document.querySelectorAll('.fbtn'), q=document.getElementById('q');
+  let f='all';
+  function apply(){
+    const term=q.value.toLowerCase();
+    document.querySelectorAll('#tbl tbody tr').forEach(tr=>{
+      const okF = f==='all' || tr.dataset.bucket===f;
+      const okQ = tr.querySelector('.co').textContent.toLowerCase().includes(term);
+      tr.style.display = (okF&&okQ)?'':'none';
+    });
+  }
+  btns.forEach(b=>b.onclick=()=>{btns.forEach(x=>x.classList.remove('on'));b.classList.add('on');f=b.dataset.f;apply();});
+  q.oninput=apply;
+</script>
+</body></html>

@@ -1,0 +1,3 @@
+# Raw source data contains admin emails + deal $ — never commit, even to a private repo.
+data/
+*.csv
